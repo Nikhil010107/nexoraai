@@ -1,154 +1,104 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Legacy to Innovation — Vikasit Bharat 2047</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXORA AI LEGACY TO INNOVATION</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="logo">
-      <svg viewBox="0 0 100 30" class="warli-logo" aria-hidden="true">
-        <!-- simple warli-inspired mark -->
-        <circle cx="10" cy="15" r="3"/>
-        <path d="M20 8 L28 22 L12 22 Z" />
-        <text x="40" y="20">Legacy to Innovation</text>
-      </svg>
-    </div>
-    <nav class="main-nav">
-      <button id="openCart" class="btn small">Cart</button>
-      <button id="openChat" class="btn small">AI Chat</button>
-    </nav>
-  </header>
+    <header>
+        <h1>UdyogAI – AI-powered growth for MSMEs</h1>
+        <nav>
+            <button onclick="showSection('products')">Shop</button>
+            <button onclick="showSection('dream-to-product')">Dream-to-Product</button>
+            <button onclick="showSection('ai-closet')">AI Closet</button>
+            <button onclick="showSection('cart')">Cart</button>
+        </nav>
+    </header>
+    <main>
+        <!-- Product Section -->
+        <section id="products" class="visible">
+            <h2>Trending Products</h2>
+            <div class="product-list">
+                <div class="product" data-id="1">
+                    <img src="shanawaz.webp" alt="Shanawaz wodden jwellery box" />
+                    <div class="product-info">
+                        <h3>Shanawaz wooden jwellery box</h3>
+                        <span class="price">₹2500</span>
+                        <span class="ai-negotiator" onclick="negotiate(1)">🤖 Negotiate</span>
+                        <button onclick="addToCart(1)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product" data-id="2">
+                    <img src="horse.webp" alt="Dhokra Crafted Horse by Utkalika" />
+                    <div class="product-info">
+                        <h3>Dhokra Crafted Horse by Utkalika</h3>
+                        <span class="price">₹1,599</span>
+                        <span class="ai-negotiator" onclick="negotiate(2)">🤖 Negotiate</span>
+                        <button onclick="addToCart(2)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="product" data-id="2">
+                    <img src="musician.webp" alt="Rajasthani Home Decor Items Musician Bawla" />
+                    <div class="product-info">
+                        <h3>Rajasthani Home Decor Items Musician Bawla</h3>
+                        <span class="price">₹1,599</span>
+                        <span class="ai-negotiator" onclick="negotiate(3)">🤖 Negotiate</span>
+                        <button onclick="addToCart(3)">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- Add more products as needed -->
+            </div>
+        </section>
 
-  <main class="container">
-    <section class="hero warli-hero">
-      <div class="hero-content">
-        <h1>Vikasit Bharat 2047 — Handmade, Small-Scale, Big Heart</h1>
-        <p class="lead">A marketplace for MSME artisans: preserve tradition, spark innovation.</p>
-        <div class="hero-actions">
-          <a href="#products" class="btn primary">Shop Handmade</a>
-          <button id="openDream" class="btn">Dream → Product</button>
+        <!-- Dream-to-Product Section -->
+        <section id="dream-to-product">
+            <h2>Dream-to-Product Converter 💤 → 🛒</h2>
+            <input type="text" id="dream-input" placeholder="Describe your dream product...">
+            <input type="file" id="dream-image" accept="image/*">
+            <button onclick="dreamToProduct()">Find Product</button>
+            <div id="dream-results"></div>
+        </section>
+
+        <!-- AI Closet Section -->
+        <section id="ai-closet">
+            <h2>AI Closet Integration</h2>
+            <input type="file" id="closet-upload" multiple accept="image/*">
+            <button onclick="analyzeCloset()">Analyze My Closet</button>
+            <div id="closet-results"></div>
+        </section>
+
+        <!-- Cart Section -->
+        <section id="cart">
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <div id="cart-emotion"></div>
+            <button onclick="checkout()">Checkout</button>
+        </section>
+    </main>
+
+    <!-- Micro-Moment Shopping Notification -->
+    <div id="micro-moment"></div>
+
+    <!-- AI Impulse Check Popup -->
+    <div id="impulse-popup" class="modal">
+        <div class="modal-content">
+            <span onclick="closeImpulseCheck()" class="close-btn">&times;</span>
+            <p id="impulse-message"></p>
+            <button onclick="proceedImpulse()">Proceed Anyway</button>
+            <button onclick="cancelImpulse()">Cancel</button>
         </div>
-      </div>
-      <div class="hero-art">
-        <!-- decorative warli-style art (SVG) -->
-        <svg viewBox="0 0 200 140" class="warli-art" aria-hidden="true">
-          <g stroke-width="1.5" fill="none" stroke-linecap="round">
-            <path d="M10 120 Q60 10 110 120" />
-            <circle cx="60" cy="80" r="4" />
-            <circle cx="90" cy="80" r="4" />
-            <path d="M50 100 L70 60 L90 100" />
-          </g>
-        </svg>
-      </div>
-    </section>
-
-    <section id="products" class="products-section">
-      <h2>Featured Handmade Products</h2>
-      <div class="filters">
-        <input id="search" placeholder="Search products, e.g. "wooden toy"" />
-        <select id="sort">
-          <option value="popular">Most popular</option>
-          <option value="new">Newest</option>
-          <option value="price-asc">Price: Low → High</option>
-        </select>
-      </div>
-
-      <div class="product-grid" id="productGrid">
-        <!-- product cards injected by app.js -->
-      </div>
-    </section>
-
-    <aside class="side-panel" id="sidePanel">
-      <div class="panel-header">
-        <h3>AI Tools</h3>
-        <button id="closePanel" class="btn small">Close</button>
-      </div>
-      <div class="panel-body">
-        <button id="negotiationBtn" class="btn full">Price Negotiation Bot</button>
-        <button id="trendsBtn" class="btn full">Crowd-Powered Trends</button>
-        <button id="cameraBtn" class="btn full">Virtual Room Camera</button>
-        <button id="chatbotBtn" class="btn full">Open Chatbot</button>
-      </div>
-    </aside>
-
-    <!-- Chat modal -->
-    <div class="modal" id="chatModal" aria-hidden="true">
-      <div class="modal-content">
-        <header>
-          <h3>AI Chat</h3>
-          <button id="closeChat" class="btn small">✕</button>
-        </header>
-        <div id="chatLog" class="chat-log" aria-live="polite"></div>
-        <form id="chatForm" class="chat-form">
-          <input id="chatInput" placeholder="Ask about a product, care instructions, or bargaining tips" />
-          <button class="btn">Send</button>
-        </form>
-      </div>
     </div>
 
-    <!-- Dream to product modal -->
-    <div class="modal" id="dreamModal" aria-hidden="true">
-      <div class="modal-content">
-        <header>
-          <h3>Dream → Product</h3>
-          <button id="closeDream" class="btn small">✕</button>
-        </header>
-        <div class="dream-body">
-          <p>Describe your dream, scene or need — we'll suggest handcrafted designs inspired by it.</p>
-          <textarea id="dreamInput" rows="4" placeholder="e.g. 'a warm lamp made of recycled glass shaped like a mango' "></textarea>
-          <button id="dreamGenerate" class="btn primary full">Generate Suggestions</button>
-          <div id="dreamResults" class="dream-results"></div>
+    <!-- Sensory Preview Modal -->
+    <div id="sensory-modal" class="modal">
+        <div class="modal-content">
+            <span onclick="closeSensory()" class="close-btn">&times;</span>
+            <p id="sensory-message"></p>
         </div>
-      </div>
     </div>
 
-    <!-- Negotiation drawer -->
-    <div class="negotiation-drawer" id="negotiationDrawer" aria-hidden="true">
-      <header>
-        <h4>Negotiation Bot</h4>
-        <button id="closeNegotiate" class="btn small">Close</button>
-      </header>
-      <div class="neg-body">
-        <label>Selected product: <span id="negProductName">—</span></label>
-        <label>Seller list price: ₹<span id="negListPrice">0</span></label>
-        <div class="neg-control">
-          <input id="offerInput" type="number" placeholder="Your offer (₹)" />
-          <button id="sendOffer" class="btn">Offer</button>
-        </div>
-        <div id="negFeedback" class="neg-feedback"></div>
-      </div>
-    </div>
-
-    <!-- Camera modal -->
-    <div class="modal" id="cameraModal" aria-hidden="true">
-      <div class="modal-content camera-modal">
-        <header>
-          <h3>Virtual Room Preview</h3>
-          <button id="closeCamera" class="btn small">✕</button>
-        </header>
-        <div class="camera-body">
-          <video id="cameraVideo" autoplay playsinline></video>
-          <canvas id="cameraCanvas" hidden></canvas>
-          <div class="overlay-tools">
-            <label>Choose product overlay:</label>
-            <select id="overlaySelect"></select>
-            <button id="snapShot" class="btn">Snapshot</button>
-            <p class="muted">Drag to move overlay. Use mousewheel / pinch to scale.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <footer class="site-footer">
-    <small>© Legacy to Innovation • Vikasit Bharat 2047 • For MSME & artisans</small>
-  </footer>
-
-  <script src="app.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
