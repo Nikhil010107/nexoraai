@@ -182,5 +182,5 @@ setTimeout(microMomentShopping, 1200);
 
 // Crowd-Powered Trend Generator (simulated, shown above Shop)
 document.getElementById('products').insertAdjacentHTML('afterbegin',
-    '<div style="padding:9px 0 14px;color:var(--accent);font-size:1.1em;">🌟 Next Big Trend:Small Enterprises, Giant Dreams – India 2047.</div>'
+    '<div style="padding:9px 0 14px;color:var(--accent);font-size:1.1em;">🌟 From Local Hands to Global Brands – MSMEs Powering Bharat 2047!.</div>'
 );
