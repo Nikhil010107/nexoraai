@@ -25,7 +25,35 @@ const products = [
         name: "Rajasthani Home Decor Items Musician Bawla",
         image: "musician.webp",
         price: 1599,
-        sensory: "Home decor",
+        sensory: "Best Antique for home decor",
+    },
+    {
+        id: 4,
+        name: "Swadeshi Rajasthani Handicraft Elephant Wall/Door/Window Hanging",
+        image: "swadeshi.webp",
+        price: 1200,
+        sensory: "Best Antique for home decor",
+    },
+    {
+        id: 5,
+        name: "Sling Bag",
+        image: "sling.webp",
+        price: 1000,
+        sensory: "Bag",
+    },
+    {
+        id: 6,
+        name: "Coffee Scrub",
+        image: "coffee scrub.jpg",
+        price: 800,
+        sensory: "Scrub",
+    },
+    {
+        id: 7,
+        name: "Neem Facewash",
+        image: "face wash.jpg",
+        price: 800,
+        sensory: "Facewash",
     },
 ];
 
